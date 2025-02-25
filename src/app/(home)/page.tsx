@@ -1,7 +1,13 @@
+import { LogIn } from "lucide-react";
+import Link from "next/link";
+
 const Home = () => {
   return (
     <div>
-      <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum, nihil. Cumque, quia obcaecati temporibus quis impedit sunt quo numquam porro eius placeat veritatis culpa recusandae tempora, accusantium saepe soluta atque.</div>
+      <header>
+        Шапка
+        <Link href="registration"><LogIn /></Link>
+      </header>
     </div>
   );
 }
