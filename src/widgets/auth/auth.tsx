@@ -1,6 +1,7 @@
 'use client'
 
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+import AuthForm from '@/features/auth/ui/authForm'
 import RegisterForm from '@/features/auth/ui/registerForm'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -14,7 +15,7 @@ const Auth = () => {
       <Card className='w-[450px]'>
         <CardHeader><h3 className='flex justify-center text-xl'>{isRegistration ? 'Регистрация' : 'Вход'}</h3></CardHeader>
         <CardContent>
-          <RegisterForm />
+          {isRegistration ? <RegisterForm /> : <AuthForm />}
         </CardContent>
         <CardFooter className='justify-center gap-[5px]'>
           {isRegistration ? (<div>Есть аккаунт?</div>) : (<div>Нет аккаунт?</div>)}
