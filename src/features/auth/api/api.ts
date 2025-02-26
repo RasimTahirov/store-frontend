@@ -3,24 +3,25 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { FormRegisterData, FromAuthData } from "@/entities/auth/types/type";
 import axios from "axios";
 
-axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true;
 
-export const fetchRegister = (registerData: FormRegisterData) => {
+export const fetchRegister = async (registerData: FormRegisterData) => {
   try {
-    const data = axios.post(
+    const res = await axios.post(
       "http://localhost:1200/api/auth/register",
       registerData
     );
-    return data;
+    return res.data;
   } catch (error) {
-    console.log("Ошибка регистрации", error);
+    if (axios.isAxiosError(error)) {
+      return error.response?.data.message;
+    }
   }
 };
 
-
 export const authThunk = createAsyncThunk(
   "auth",
-  async (data: FromAuthData) => {
+  async (data: FromAuthData, { rejectWithValue }) => {
     try {
       const res = await axios.post(
         "http://localhost:1200/api/auth/login",
@@ -28,7 +29,12 @@ export const authThunk = createAsyncThunk(
       );
       return res.data;
     } catch (error) {
-      console.log("Ошибка авторизации", error);
+      if (axios.isAxiosError(error)) {
+        return rejectWithValue(
+          error.response?.data.message || "Неизвестная ошибка"
+        );
+      }
+      return rejectWithValue("Неизвестная ошибка");
     }
   }
 );

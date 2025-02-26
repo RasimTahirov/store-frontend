@@ -5,10 +5,10 @@ import { IUser } from "@/entities/auth/types/type";
 interface initialState {
   error: string | null;
   loading: boolean;
-  user: IUser;
+  user: IUser | null;
 }
 
-const initialState = {
+const initialState: initialState = {
   error: null,
   loading: false,
   user: null,
@@ -30,8 +30,8 @@ const authSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(authThunk.rejected, (state, action) => {
-        state.error = action.error as string;
         state.loading = false;
+        state.error = action.payload as string;
       });
   },
 });

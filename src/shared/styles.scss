@@ -77,4 +77,12 @@ body {
   .link-button {
     @apply hover:opacity-70 transition-opacity
   }
+
+  .error-text {
+    @apply flex justify-center text-sm leading-[1.2] pt-1.5 text-destructive
+  }
+
+  .error-input {
+    @apply border-destructive focus-visible:ring-0 !important
+  }
 }
