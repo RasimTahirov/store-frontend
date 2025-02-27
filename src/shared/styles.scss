@@ -86,8 +86,12 @@ body {
     @apply border-destructive focus-visible:ring-0 !important
   }
 
-  .dis {
-    @apply hover:disabled:pointer-events-none text-red-500
+  .userData-container {
+    @apply flex justify-between
+  }
+
+  .userData-input {
+    @apply bg-white w-full flex justify-items-end
   }
 }
 
