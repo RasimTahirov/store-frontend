@@ -1,4 +1,4 @@
-import { LogIn } from "lucide-react";
+import { LogIn, SquareUserRound } from "lucide-react";
 import Link from "next/link";
 
 const Home = () => {
@@ -7,6 +7,7 @@ const Home = () => {
       <header>
         Шапка
         <Link href="registration"><LogIn /></Link>
+        <Link href="account"><SquareUserRound /></Link>
       </header>
     </div>
   );

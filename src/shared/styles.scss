@@ -85,4 +85,19 @@ body {
   .error-input {
     @apply border-destructive focus-visible:ring-0 !important
   }
+
+  .dis {
+    @apply hover:disabled:pointer-events-none text-red-500
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
