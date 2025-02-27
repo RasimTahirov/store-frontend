@@ -11,7 +11,6 @@ export const getAlUser = async ({ page, limit }: { page: number; limit: number }
         },
       }
     );
-    console.log('api', res.data)
     return res.data;
   } catch (error) {
     console.log("Ошибка в получении пользователей", error);
