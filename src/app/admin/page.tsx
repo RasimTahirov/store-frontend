@@ -1,11 +1,8 @@
-import Link from "next/link"
+import Admin from "@/features/admin/components/admin"
 
 const AdminPage = () => {
   return (
-    <div>
-      <div>Админ панель</div>
-      <Link href="admin/dashboard">Дашборд</Link>
-    </div>
+    <Admin />
   )
 }
 
