@@ -7,6 +7,7 @@ const Admin = () => {
       <div className="flex gap-7">
         <Link href="admin/dashboard">Дашборд</Link>
         <Link href="admin/category">Управление категориями</Link>
+        <Link href="admin/product">Управление товарами</Link>
       </div>
     </div>
   )
