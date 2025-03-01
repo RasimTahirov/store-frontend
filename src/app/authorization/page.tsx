@@ -1,9 +1,7 @@
-import Auth from "@/widgets/auth/auth"
+import Auth from '@/widgets/auth/auth'
 
 const AuthorizationPage = () => {
-  return (
-    <Auth />
-  )
+  return <Auth />
 }
 
 export default AuthorizationPage

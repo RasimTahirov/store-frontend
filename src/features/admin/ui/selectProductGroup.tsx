@@ -1,7 +1,15 @@
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { gender, size } from "../utils/utils"
-import { IProduct } from "@/entities/product/types/type"
-import { ICategory } from "@/entities/category/types/type"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import { ICategory } from '@/entities/category/types/type'
+import { IProduct } from '@/entities/product/types/type'
+
+import { gender, size } from '../utils/utils'
 
 interface SelectProductGroupProps {
   formData: IProduct
@@ -9,12 +17,16 @@ interface SelectProductGroupProps {
   categories: ICategory[]
 }
 
-const SelectProductGroup: React.FC<SelectProductGroupProps> = ({ formData, handleSelectChange, categories }) => {
+const SelectProductGroup: React.FC<SelectProductGroupProps> = ({
+  formData,
+  handleSelectChange,
+  categories,
+}) => {
   return (
     <>
       <Select value={formData.size} onValueChange={handleSelectChange('size')}>
         <SelectTrigger>
-          <SelectValue placeholder="Размер" />
+          <SelectValue placeholder='Размер' />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -29,7 +41,7 @@ const SelectProductGroup: React.FC<SelectProductGroupProps> = ({ formData, handl
 
       <Select value={formData.gender} onValueChange={handleSelectChange('gender')}>
         <SelectTrigger>
-          <SelectValue placeholder="Пол" />
+          <SelectValue placeholder='Пол' />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
@@ -44,11 +56,11 @@ const SelectProductGroup: React.FC<SelectProductGroupProps> = ({ formData, handl
 
       <Select value={formData.category} onValueChange={handleSelectChange('category')}>
         <SelectTrigger>
-          <SelectValue placeholder="Категория" />
+          <SelectValue placeholder='Категория' />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            {categories.map((category) => (
+            {categories.map(category => (
               <SelectItem key={category.id} value={category.id}>
                 {category.name}
               </SelectItem>
@@ -57,7 +69,6 @@ const SelectProductGroup: React.FC<SelectProductGroupProps> = ({ formData, handl
         </SelectContent>
       </Select>
     </>
-
   )
 }
 

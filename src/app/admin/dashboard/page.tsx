@@ -1,11 +1,9 @@
 'use client'
 
-import Dashboard from "@/features/admin/components/dashboard"
+import Dashboard from '@/features/admin/components/dashboard'
 
 const DashboardPage = () => {
-  return (
-    <Dashboard />
-  )
+  return <Dashboard />
 }
 
 export default DashboardPage

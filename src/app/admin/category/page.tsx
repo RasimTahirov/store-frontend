@@ -1,9 +1,7 @@
-import Category from "@/features/admin/components/category"
+import Category from '@/features/admin/components/category'
 
 const CategoryPage = () => {
-  return (
-    <Category />
-  )
+  return <Category />
 }
 
 export default CategoryPage

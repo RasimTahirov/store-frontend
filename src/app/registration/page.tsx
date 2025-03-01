@@ -1,9 +1,7 @@
-import Auth from "@/widgets/auth/auth"
+import Auth from '@/widgets/auth/auth'
 
 const RegistrationPage = () => {
-  return (
-    <Auth />
-  )
+  return <Auth />
 }
 
 export default RegistrationPage
