@@ -19,6 +19,7 @@ export const fetchRegister = async (registerData: FormRegisterData) => {
   }
 };
 
+// Переменовать на login
 export const authThunk = createAsyncThunk(
   "auth",
   async (data: FromAuthData, { rejectWithValue }) => {
@@ -38,6 +39,15 @@ export const authThunk = createAsyncThunk(
     }
   }
 );
+
+export const logout = async () => {
+  try {
+    const res = await axios.post("http://localhost:1200/api/auth/logout");
+    return res.data;
+  } catch (error) {
+    console.log("Ошибка при выходе", error);
+  }
+};
 
 export const userDataThunk = createAsyncThunk("userData", async () => {
   try {
