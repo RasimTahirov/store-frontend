@@ -38,3 +38,12 @@ export const authThunk = createAsyncThunk(
     }
   }
 );
+
+export const userDataThunk = createAsyncThunk("userData", async () => {
+  try {
+    const res = await axios.get("http://localhost:1200/api/user/data");
+    return res.data;
+  } catch (error) {
+    console.log("Ошибка получении данных", error);
+  }
+});

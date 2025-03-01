@@ -85,4 +85,23 @@ body {
   .error-input {
     @apply border-destructive focus-visible:ring-0 !important
   }
+
+  .userData-container {
+    @apply flex justify-between
+  }
+
+  .userData-input {
+    @apply bg-white w-full flex justify-items-end
+  }
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
