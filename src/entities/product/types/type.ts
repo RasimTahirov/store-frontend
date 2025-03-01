@@ -1,4 +1,10 @@
-import { z } from "zod";
-import { productSchema } from "../schemas/product.schema";
-
-export type FromProductData = z.infer<typeof productSchema>;
+export interface IProduct {
+  title: string
+  description: string
+  price: string
+  size: string
+  color: string
+  category: string
+  gender: string
+  images: File[]
+}

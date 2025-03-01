@@ -67,21 +67,18 @@ export const createProductThunk = createAsyncThunk(
   "createProduct",
   async (data: FormData) => {
     try {
-      console.log("Sending request to server...");
       const res = await axios.post(
         "http://localhost:1200/api/admin/create/product",
         data,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Указываем правильный тип контента
+            "Content-Type": "multipart/form-data",
           },
         }
       );
-      console.log("Response from server:", res.data);
       return res.data;
     } catch (error) {
-      console.error("Error in creating product:", error); // Логируем ошибку
-      throw new Error("Ошибка при создании товара"); // Явно выбрасываем ошибку
+      console.log("Ошибка", error);
     }
   }
 );
@@ -94,3 +91,5 @@ export const getAllCategories = async () => {
     console.log("Ошибка при получении категории", error);
   }
 }; // Сделать отдельно получение категорий для админов на бэке (ВОЗМОЖНО :D)
+
+// !!Обработать все ошибки

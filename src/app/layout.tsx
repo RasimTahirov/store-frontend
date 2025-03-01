@@ -1,7 +1,7 @@
 'use client'
 
 import { Roboto_Condensed } from "next/font/google";
-import "../shared/styles.scss";
+import "../shared/styles/styles.scss";
 
 import { Provider } from 'react-redux'
 import store from "./store/store";
