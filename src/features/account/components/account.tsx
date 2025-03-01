@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -10,11 +11,13 @@ import { pageConfig } from '@/shared/config/pageConfig'
 
 const Account = () => {
   const dispatch = useDispatch<AppDispatch>()
+  const navigation = useRouter()
 
   const { user } = useSelector((state: RootState) => state.auth)
 
   const handleLogout = async () => {
     await logout()
+    navigation.push(pageConfig.home)
   }
 
   useEffect(() => {

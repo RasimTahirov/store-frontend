@@ -30,3 +30,4 @@ const useRegisterSubmit = () => {
 }
 
 export default useRegisterSubmit
+// Исправить ошибку с регистрацей

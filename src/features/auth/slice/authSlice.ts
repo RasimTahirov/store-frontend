@@ -2,18 +2,20 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { IUser } from '@/entities/auth/types/type'
 
-import { authThunk, userDataThunk } from '../api/api'
+import { authThunk, checkAuthStatusThunk, userDataThunk } from '../api/api'
 
 interface initialState {
   error: string | null
   loading: boolean
   user: IUser | null
+  isAuth: boolean
 }
 
 const initialState: initialState = {
   error: null,
   loading: false,
   user: null,
+  isAuth: false,
 }
 
 const authSlice = createSlice({
@@ -40,6 +42,12 @@ const authSlice = createSlice({
         state.error = null
         state.loading = false
         state.user = action.payload
+      })
+
+      .addCase(checkAuthStatusThunk.fulfilled, (state, action) => {
+        state.error = null
+        state.loading = false
+        state.isAuth = action.payload
       })
   },
 })

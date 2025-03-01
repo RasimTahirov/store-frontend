@@ -5,6 +5,8 @@ class PageConfig {
   admin_category: string = 'category'
   admin_dashboard: string = 'dashboard'
   admin_product: string = 'product'
+  authorization: string = 'authorization'
+  registartion: string = 'registration'
 }
 
 export const pageConfig = new PageConfig()

@@ -49,3 +49,12 @@ export const userDataThunk = createAsyncThunk('userData', async () => {
     console.log('Ошибка получении данных', error)
   }
 })
+
+export const checkAuthStatusThunk = createAsyncThunk('checkAuthStatus', async () => {
+  try {
+    const res = await axios.get('http://localhost:1200/api/user/status')
+    return res.data
+  } catch (error) {
+    console.log('Ошибка данных', error)
+  }
+})

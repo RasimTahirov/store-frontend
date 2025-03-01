@@ -1,15 +1,19 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { AppDispatch, RootState } from '@/app/store/store'
 import { authSchema } from '@/entities/auth/schemas/auth.schemas'
 import { FromAuthData } from '@/entities/auth/types/type'
+import { pageConfig } from '@/shared/config/pageConfig'
 
 import { authThunk } from '../api/api'
 
 const useAuthForm = () => {
   const dispatch = useDispatch<AppDispatch>()
+  const navigation = useRouter()
+
   const error = useSelector((state: RootState) => state.auth.error)
 
   const {
@@ -21,7 +25,8 @@ const useAuthForm = () => {
   })
 
   const onSumbit = async (data: FromAuthData) => {
-    dispatch(authThunk(data))
+    await dispatch(authThunk(data))
+    navigation.push(pageConfig.home)
   }
 
   return { register, handleSubmit, errors, error, onSumbit }
