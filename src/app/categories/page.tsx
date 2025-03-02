@@ -1,7 +1,7 @@
 const CategoryPage = () => {
   return (
     <div>
-      <div>test123</div>
+      <div>Пока хз что тут будет</div>
     </div>
   )
 }
