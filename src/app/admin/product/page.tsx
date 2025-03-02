@@ -1,9 +1,7 @@
-import Product from "@/features/admin/components/product"
+import Product from '@/features/admin/components/product'
 
 const ProductPage = () => {
-  return (
-    <Product />
-  )
+  return <Product />
 }
 
 export default ProductPage

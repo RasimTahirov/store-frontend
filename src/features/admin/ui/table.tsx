@@ -1,8 +1,18 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { IDashboardResponse } from "../types/type"
-import React, { useState } from "react"
-import { IUser } from "@/entities/auth/types/type"
-import ModalTable from "./modalTable"
+import React, { useState } from 'react'
+
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { IUser } from '@/entities/auth/types/type'
+
+import { IDashboardResponse } from '../types/type'
+
+import ModalTable from './modalTable'
 
 interface DashboardTableProps {
   users: IDashboardResponse | null
@@ -30,15 +40,16 @@ const DashboardTable: React.FC<DashboardTableProps> = ({ users }) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {Array.isArray(users?.data) && users.data.map((user) => (
-            <TableRow className="cursor-pointer" key={user.id} onClick={() => handleOpen(user)}>
-              <TableCell>{user.id}</TableCell>
-              <TableCell>{user.name}</TableCell>
-              <TableCell>{user.surname}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>{user.role}</TableCell>
-            </TableRow>
-          ))}
+          {Array.isArray(users?.data) &&
+            users.data.map(user => (
+              <TableRow className='cursor-pointer' key={user.id} onClick={() => handleOpen(user)}>
+                <TableCell>{user.id}</TableCell>
+                <TableCell>{user.name}</TableCell>
+                <TableCell>{user.surname}</TableCell>
+                <TableCell>{user.email}</TableCell>
+                <TableCell>{user.role}</TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
       <ModalTable openDialog={openDialog} setOpenDialog={setOpenDialog} userData={userData} />

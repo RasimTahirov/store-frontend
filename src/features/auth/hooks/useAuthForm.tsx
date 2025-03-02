@@ -1,21 +1,32 @@
-import { authSchema } from "@/entities/auth/schemas/auth.schemas"
-import { FromAuthData } from "@/entities/auth/types/type"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { useDispatch, useSelector } from "react-redux"
-import { authThunk } from "../api/api"
-import { AppDispatch, RootState } from "@/app/store/store"
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { AppDispatch, RootState } from '@/app/store/store'
+import { authSchema } from '@/entities/auth/schemas/auth.schemas'
+import { FromAuthData } from '@/entities/auth/types/type'
+import { pageConfig } from '@/shared/config/pageConfig'
+
+import { authThunk } from '../api/api'
 
 const useAuthForm = () => {
   const dispatch = useDispatch<AppDispatch>()
+  const navigation = useRouter()
+
   const error = useSelector((state: RootState) => state.auth.error)
 
-  const { register, handleSubmit, formState: { errors } } = useForm<FromAuthData>({
-    resolver: zodResolver(authSchema)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FromAuthData>({
+    resolver: zodResolver(authSchema),
   })
 
   const onSumbit = async (data: FromAuthData) => {
-    dispatch(authThunk(data))
+    await dispatch(authThunk(data))
+    navigation.push(pageConfig.home)
   }
 
   return { register, handleSubmit, errors, error, onSumbit }

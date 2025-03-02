@@ -1,9 +1,7 @@
-import Account from "@/widgets/account/account"
+import Account from '@/features/account/components/account'
 
 const AccountPage = () => {
-  return (
-    <Account />
-  )
+  return <Account />
 }
 
 export default AccountPage

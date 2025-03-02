@@ -1,9 +1,7 @@
-import Admin from "@/features/admin/components/admin"
+import Admin from '@/features/admin/components/admin'
 
 const AdminPage = () => {
-  return (
-    <Admin />
-  )
+  return <Admin />
 }
 
 export default AdminPage

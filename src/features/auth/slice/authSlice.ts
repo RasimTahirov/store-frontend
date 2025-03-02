@@ -1,45 +1,55 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { authThunk, userDataThunk } from "../api/api";
-import { IUser } from "@/entities/auth/types/type";
+import { createSlice } from '@reduxjs/toolkit'
+
+import { IUser } from '@/entities/auth/types/type'
+
+import { authThunk, checkAuthStatusThunk, userDataThunk } from '../api/api'
 
 interface initialState {
-  error: string | null;
-  loading: boolean;
-  user: IUser | null;
+  error: string | null
+  loading: boolean
+  user: IUser | null
+  isAuth: boolean
 }
 
 const initialState: initialState = {
   error: null,
   loading: false,
   user: null,
-};
+  isAuth: false,
+}
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
-      .addCase(authThunk.pending, (state) => {
-        state.error = null;
-        state.loading = true;
+      .addCase(authThunk.pending, state => {
+        state.error = null
+        state.loading = true
       })
       .addCase(authThunk.fulfilled, (state, action) => {
-        state.error = null;
-        state.loading = false;
-        state.user = action.payload;
+        state.error = null
+        state.loading = false
+        state.user = action.payload
       })
       .addCase(authThunk.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload as string;
+        state.loading = false
+        state.error = action.payload as string
       })
 
       .addCase(userDataThunk.fulfilled, (state, action) => {
-        state.error = null;
-        state.loading = false;
-        state.user = action.payload;
+        state.error = null
+        state.loading = false
+        state.user = action.payload
+      })
+
+      .addCase(checkAuthStatusThunk.fulfilled, (state, action) => {
+        state.error = null
+        state.loading = false
+        state.isAuth = action.payload
       })
   },
-});
+})
 
-export default authSlice.reducer;
+export default authSlice.reducer
