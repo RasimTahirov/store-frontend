@@ -15,8 +15,10 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { ICategory } from '@/entities/category/types/type'
 import { checkAuthStatusThunk } from '@/features/auth/api/api'
+import { deleteCartItem, getItemCartThunk } from '@/features/cart/api/api'
 import { getManCategories, getWomanCategories } from '@/features/product/api/api'
 import { pageConfig } from '@/shared/config/pageConfig'
 
@@ -25,6 +27,12 @@ const Header = () => {
   const authStatus = useSelector((state: RootState) => state.auth.isAuth)
   const [manCategory, setManCategory] = useState<ICategory[]>([])
   const [womanCategory, setWomanCategory] = useState<ICategory[]>([])
+
+  const cartItem = useSelector((state: RootState) => state.cart.cartItem)
+
+  const handleDeleteCart = async (id: string) => {
+    await deleteCartItem(id)
+  }
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -35,10 +43,9 @@ const Header = () => {
     }
 
     dispatch(checkAuthStatusThunk())
+    dispatch(getItemCartThunk())
     fetchCategory()
   }, [dispatch])
-
-  console.log(womanCategory)
 
   return (
     <header className='h-20 flex items-center justify-between'>
@@ -89,7 +96,32 @@ const Header = () => {
           {authStatus ? (
             <>
               <div>
-                <ShoppingCart />
+                <Sheet>
+                  <SheetTrigger asChild>
+                    <ShoppingCart />
+                  </SheetTrigger>
+                  <SheetContent>
+                    <SheetHeader>
+                      <SheetTitle>Корзина</SheetTitle>
+                      {Array.isArray(cartItem.cartItems) &&
+                        cartItem.cartItems.map(cart => (
+                          <div key={cart.id} className='flex'>
+                            <div className='w-20'>
+                              <img src={cart.product.images[0]} />
+                            </div>
+                            <div className='flex flex-col'>
+                              <div>{cart.product.title}</div>
+                              <div>{cart.product.price}</div>
+                              <div>Кол-во {cart.quantity}</div>
+                              <button onClick={() => handleDeleteCart(cart.productId)}>
+                                Удалить
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                    </SheetHeader>
+                  </SheetContent>
+                </Sheet>
               </div>
               <Link href={pageConfig.account}>
                 <CircleUserRound />

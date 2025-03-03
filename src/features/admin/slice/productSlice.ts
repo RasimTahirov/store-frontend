@@ -22,7 +22,7 @@ import { createProductThunk } from '../api/api'
 interface initialState {
   error: string | null
   loading: boolean
-  product: IProduct | null
+  product: IProduct
 }
 
 const initialState: initialState = {
