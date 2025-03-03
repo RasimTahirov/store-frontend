@@ -1,3 +1,4 @@
+import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 export const getManCategories = async () => {
@@ -26,3 +27,15 @@ export const getCategoryByUrl = async (url: string | undefined) => {
     console.log('Ошибка', error)
   }
 }
+
+export const getProductByIdThunk = createAsyncThunk(
+  'getProductById',
+  async (id: string | undefined) => {
+    try {
+      const res = await axios.get(`http://localhost:1200/api/user/product/${id}`)
+      return res.data
+    } catch (error) {
+      console.log('Ошибка')
+    }
+  }
+)

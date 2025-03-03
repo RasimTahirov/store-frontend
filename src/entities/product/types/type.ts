@@ -7,7 +7,10 @@ export interface IProduct {
   color: string
   category: string
   gender: string
-  images: File[]
+  images: string[]
+  compound: string
+  country: string
+  care: string
 }
 
 export interface IProducts {

@@ -43,7 +43,9 @@ const Header = () => {
   return (
     <header className='h-20 flex items-center justify-between'>
       <div className='flex items-center justify-start gap-x-5'>
-        <div className='text-3xl font-bold'>LOGO</div>
+        <Link href={pageConfig.home} className='text-3xl font-bold'>
+          LOGO
+        </Link>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>

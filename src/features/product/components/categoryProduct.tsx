@@ -1,40 +1,30 @@
-import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
-import { IProducts } from '@/entities/product/types/type'
+import Layout from '@/app/(layout)/layout'
 
-import { getCategoryByUrl } from '../api/api'
-import productUrl from '../utils/productUrl'
+import useCategoryProducts from '../hooks/useCategoryProducts'
 
 const CategoryProduct = () => {
-  const [categoryProduct, setCategoryProduct] = useState<IProducts>([])
-  const url = usePathname()
-
-  const urlApi = productUrl(url)
-
-  useEffect(() => {
-    const fetchCategory = async () => {
-      const category = await getCategoryByUrl(urlApi)
-      setCategoryProduct(category)
-    }
-
-    fetchCategory()
-  }, [])
+  const { categoryProduct, urlApi } = useCategoryProducts()
 
   return (
-    <div>
-      <div className='flex flex-grow gap-2.5'>
-        {Array.isArray(categoryProduct.products) &&
-          categoryProduct.products.map((product, index) => (
-            <div key={index} className='w-80'>
-              <img src={product.image[0]} />
-              {/* Изменить на бэке на images */}
-              <div>{product.title}</div>
-              <div>{product.price}₽</div>
-            </div>
-          ))}
+    <Layout>
+      <div className='flex justify-between'>
+        <div className='w-[280px]'>Тут должна быть фильтрация, наверное :)</div>
+        <div className='grid grid-cols-4 gap-x-10 gap-y-5'>
+          {Array.isArray(categoryProduct?.products) &&
+            categoryProduct.products.map(product => (
+              <div key={product.id} className='w-80 cursor-pointer'>
+                <Link href={`${urlApi}/${product.id}`}>
+                  <img src={product.images[0]} />
+                  <div>{product.title}</div>
+                  <div>{product.price}₽</div>
+                </Link>
+              </div>
+            ))}
+        </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 
