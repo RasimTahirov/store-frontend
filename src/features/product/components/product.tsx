@@ -1,8 +1,12 @@
 'use client'
 
+import { useDispatch } from 'react-redux'
+import { toast, Toaster } from 'sonner'
+
 import Layout from '@/app/(layout)/layout'
 import { Button } from '@/components/ui/button'
 import { addCart } from '@/features/cart/api/api'
+import { addCartItem } from '@/features/cart/slice/cart.slice'
 
 import useProduct from '../hooks/useProduct'
 import ProductCarousel from '../ui/productCarousel'
@@ -10,16 +14,27 @@ import ProductInfo from '../ui/productInfo'
 
 const Product = () => {
   const { product } = useProduct()
+  const dispatch = useDispatch()
 
-  const handleAddCart = (id: string | undefined, quantity: number) => {
+  const handleAddCart = async (id: string | undefined, quantity: number) => {
     if (id) {
-      addCart(id, quantity)
-    } else {
-      console.error('Product ID is undefined')
+      await addCart(id, quantity)
+
+      const newItem = {
+        id: product.id,
+        productId: product.id,
+        product: {
+          title: product.title,
+          images: product.images,
+          price: product.price,
+        },
+        quantity,
+      }
+
+      dispatch(addCartItem(newItem))
+      toast.success('Товар добавлен в корзину')
     }
   }
-
-  console.log(product?.id)
 
   return (
     <Layout>
@@ -30,6 +45,7 @@ const Product = () => {
           <Button onClick={() => handleAddCart(product.id, 1)}>Добавить в корзину</Button>
         </div>
       </div>
+      <Toaster />
     </Layout>
   )
 }

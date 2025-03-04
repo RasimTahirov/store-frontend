@@ -1,50 +1,22 @@
 'use client'
 
-import { CircleUserRound, LogIn, ShoppingCart } from 'lucide-react'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { AppDispatch, RootState } from '@/app/store/store'
 import { Input } from '@/components/ui/input'
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import { ICategory } from '@/entities/category/types/type'
 import { checkAuthStatusThunk } from '@/features/auth/api/api'
-import { deleteCartItem, getItemCartThunk } from '@/features/cart/api/api'
-import { getManCategories, getWomanCategories } from '@/features/product/api/api'
 import { pageConfig } from '@/shared/config/pageConfig'
+import Navigation from '@/shared/ui/navigation'
+import UserActions from '@/shared/ui/userActions'
 
 const Header = () => {
   const dispatch = useDispatch<AppDispatch>()
   const authStatus = useSelector((state: RootState) => state.auth.isAuth)
-  const [manCategory, setManCategory] = useState<ICategory[]>([])
-  const [womanCategory, setWomanCategory] = useState<ICategory[]>([])
-
-  const cartItem = useSelector((state: RootState) => state.cart.cartItem)
-
-  const handleDeleteCart = async (id: string) => {
-    await deleteCartItem(id)
-  }
 
   useEffect(() => {
-    const fetchCategory = async () => {
-      const manData = await getManCategories()
-      const womanData = await getWomanCategories()
-      setManCategory(manData)
-      setWomanCategory(womanData)
-    }
-
     dispatch(checkAuthStatusThunk())
-    dispatch(getItemCartThunk())
-    fetchCategory()
   }, [dispatch])
 
   return (
@@ -53,86 +25,11 @@ const Header = () => {
         <Link href={pageConfig.home} className='text-3xl font-bold'>
           LOGO
         </Link>
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Мужчинам</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className='grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]'>
-                  {manCategory.map(category => (
-                    <li className='row-span-3' key={category.id}>
-                      <NavigationMenuLink asChild>
-                        <Link href={`${pageConfig.categories}/${category.url}`}>
-                          {category.name}
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Женщинам</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] '>
-                  {womanCategory.map(category => (
-                    <li className='row-span-3' key={category.id}>
-                      <NavigationMenuLink asChild>
-                        <Link href={`${pageConfig.categories}/${category.url}`}>
-                          {category.name}
-                        </Link>
-                      </NavigationMenuLink>
-                    </li>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+        <Navigation />
       </div>
       <div className='flex items-center'>
         <Input type='search' placeholder='Поиск товаров...' className='w-[350px]' />
-        <div className='flex gap-x-2.5 ml-20'>
-          {authStatus ? (
-            <>
-              <div>
-                <Sheet>
-                  <SheetTrigger asChild>
-                    <ShoppingCart />
-                  </SheetTrigger>
-                  <SheetContent>
-                    <SheetHeader>
-                      <SheetTitle>Корзина</SheetTitle>
-                      {Array.isArray(cartItem.cartItems) &&
-                        cartItem.cartItems.map(cart => (
-                          <div key={cart.id} className='flex'>
-                            <div className='w-20'>
-                              <img src={cart.product.images[0]} />
-                            </div>
-                            <div className='flex flex-col'>
-                              <div>{cart.product.title}</div>
-                              <div>{cart.product.price}</div>
-                              <div>Кол-во {cart.quantity}</div>
-                              <button onClick={() => handleDeleteCart(cart.productId)}>
-                                Удалить
-                              </button>
-                            </div>
-                          </div>
-                        ))}
-                    </SheetHeader>
-                  </SheetContent>
-                </Sheet>
-              </div>
-              <Link href={pageConfig.account}>
-                <CircleUserRound />
-              </Link>
-            </>
-          ) : (
-            <Link href={pageConfig.authorization}>
-              <LogIn />
-            </Link>
-          )}
-        </div>
+        <UserActions authStatus={authStatus} />
       </div>
     </header>
   )

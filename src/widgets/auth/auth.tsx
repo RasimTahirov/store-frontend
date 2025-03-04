@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import AuthForm from '@/features/auth/ui/authForm'
 import RegisterForm from '@/features/auth/ui/registerForm'
+import { pageConfig } from '@/shared/config/pageConfig'
 
 const Auth = () => {
   const pathname = usePathname()
@@ -21,11 +22,11 @@ const Auth = () => {
         <CardFooter className='justify-center gap-[5px]'>
           {isRegistration ? <div>Есть аккаунт?</div> : <div>Нет аккаунт?</div>}
           {isRegistration ? (
-            <Link className='link-button' href='authorization'>
+            <Link className='link-button' href={pageConfig.authorization}>
               войти
             </Link>
           ) : (
-            <Link className='link-button' href='registration'>
+            <Link className='link-button' href={pageConfig.registartion}>
               зарегистрироваться
             </Link>
           )}

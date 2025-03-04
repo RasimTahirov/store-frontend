@@ -1,17 +1,24 @@
 import Link from 'next/link'
 
+import Layout from '@/app/(layout)/layout'
+import { Button } from '@/components/ui/button'
 import { pageConfig } from '@/shared/config/pageConfig'
 
 const Admin = () => {
   return (
-    <div>
-      <div>Админ панель</div>
-      <div className='flex gap-7'>
-        <Link href={pageConfig.admin_dashboard}>Дашборд</Link>
-        <Link href={pageConfig.admin_category}>Управление категориями</Link>
-        <Link href={pageConfig.admin_product}>Управление товарами</Link>
+    <Layout>
+      <div className='flex gap-5'>
+        <Button variant='link'>
+          <Link href={pageConfig.admin_dashboard}>Дашборд</Link>
+        </Button>
+        <Button variant='link'>
+          <Link href={pageConfig.admin_category}>Управление категориями</Link>
+        </Button>
+        <Button variant='link'>
+          <Link href={pageConfig.admin_product}>Управление товарами</Link>
+        </Button>
       </div>
-    </div>
+    </Layout>
   )
 }
 

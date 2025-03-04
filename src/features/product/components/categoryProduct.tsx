@@ -9,16 +9,20 @@ const CategoryProduct = () => {
 
   return (
     <Layout>
-      <div className='flex justify-between'>
-        <div className='w-[280px]'>Тут должна быть фильтрация, наверное :)</div>
-        <div className='grid grid-cols-4 gap-x-10 gap-y-5'>
+      <div className='flex justify-center'>
+        <div className='grid grid-cols-5 justify-center gap-x-5 gap-y-5'>
           {Array.isArray(categoryProduct?.products) &&
             categoryProduct.products.map(product => (
               <div key={product.id} className='w-80 cursor-pointer'>
                 <Link href={`${urlApi}/${product.id}`}>
-                  <img src={product.images[0]} />
-                  <div>{product.title}</div>
-                  <div>{product.price}₽</div>
+                  <div className='mb-1.5'>
+                    <img src={product.images[0]} />
+                  </div>
+                  <div className='text-base flex justify-between'>
+                    <h2>{product.title}</h2>
+                    <div className='text-gray-500'>Размер - {product.size}</div>
+                  </div>
+                  <div className='text-gray-500'>{product.price}₽</div>
                 </Link>
               </div>
             ))}
