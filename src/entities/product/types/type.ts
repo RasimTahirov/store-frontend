@@ -1,13 +1,13 @@
 export interface IProduct {
-  id: string
+  id?: string
   title: string
   description: string
-  price: number
+  price: number | string
   size: string
   color: string
   category: string
   gender: string
-  images: string[]
+  images: string[] | File[]
   compound: string
   country: string
   care: string

@@ -2,7 +2,7 @@
 
 import Layout from '@/app/(layout)/layout'
 
-import UserPanel from '../ui/UserPanel'
+import UserPanel from '../ui/userPanel'
 
 const Account = () => {
   return (

@@ -28,7 +28,11 @@ const Header = () => {
         <Navigation />
       </div>
       <div className='flex items-center'>
-        <Input type='search' placeholder='Поиск товаров...' className='w-[350px]' />
+        <Input
+          type='search'
+          placeholder='Поиск товаров..., пока не работает :('
+          className='w-[350px]'
+        />
         <UserActions authStatus={authStatus} />
       </div>
     </header>

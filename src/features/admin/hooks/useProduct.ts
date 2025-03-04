@@ -19,6 +19,9 @@ const useProduct = () => {
     category: '',
     gender: '',
     images: [] as File[],
+    compound: '',
+    country: '',
+    care: '',
   })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -57,6 +60,9 @@ const useProduct = () => {
     data.append('color', formData.color)
     data.append('category', formData.category)
     data.append('gender', formData.gender)
+    data.append('compound', formData.compound)
+    data.append('country', formData.country)
+    data.append('care', formData.care)
 
     formData.images.forEach(img => {
       data.append('images', img)
