@@ -35,13 +35,14 @@ const Navigation = () => {
           <NavigationMenuTrigger>Мужчинам</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className='grid gap-3 p-4 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]'>
-              {manCategory.map(category => (
-                <li className='row-span-3' key={category.id}>
-                  <NavigationMenuLink asChild>
-                    <Link href={`${pageConfig.categories}/${category.url}`}>{category.name}</Link>
-                  </NavigationMenuLink>
-                </li>
-              ))}
+              {Array.isArray(manCategory) &&
+                manCategory.map(category => (
+                  <li className='row-span-3' key={category.id}>
+                    <NavigationMenuLink asChild>
+                      <Link href={`${pageConfig.categories}/${category.url}`}>{category.name}</Link>
+                    </NavigationMenuLink>
+                  </li>
+                ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -49,13 +50,14 @@ const Navigation = () => {
           <NavigationMenuTrigger>Женщинам</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] '>
-              {womanCategory.map(category => (
-                <li className='row-span-3' key={category.id}>
-                  <NavigationMenuLink asChild>
-                    <Link href={`${pageConfig.categories}/${category.url}`}>{category.name}</Link>
-                  </NavigationMenuLink>
-                </li>
-              ))}
+              {Array.isArray(womanCategory) &&
+                womanCategory.map(category => (
+                  <li className='row-span-3' key={category.id}>
+                    <NavigationMenuLink asChild>
+                      <Link href={`${pageConfig.categories}/${category.url}`}>{category.name}</Link>
+                    </NavigationMenuLink>
+                  </li>
+                ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

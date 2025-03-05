@@ -1,8 +1,8 @@
 import Layout from '@/app/(layout)/layout'
 import GoBack from '@/shared/ui/goBack'
 
+import Pagination from '../../../shared/ui/pagination'
 import useDashboard from '../hooks/useDashboard'
-import Pagination from '../ui/pagination'
 import DashboardTable from '../ui/table'
 
 const Dashboard = () => {

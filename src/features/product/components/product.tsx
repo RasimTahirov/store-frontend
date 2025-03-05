@@ -7,6 +7,7 @@ import Layout from '@/app/(layout)/layout'
 import { Button } from '@/components/ui/button'
 import { addCart } from '@/features/cart/api/api'
 import { addCartItem } from '@/features/cart/slice/cart.slice'
+import GoBack from '@/shared/ui/goBack'
 
 import useProduct from '../hooks/useProduct'
 import ProductCarousel from '../ui/productCarousel'
@@ -38,6 +39,7 @@ const Product = () => {
 
   return (
     <Layout>
+      <GoBack />
       <div className='grid grid-cols-2 gap-20'>
         <ProductCarousel product={product} />
         <div className='flex flex-col gap-5'>
