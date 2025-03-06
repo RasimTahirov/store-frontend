@@ -8,7 +8,8 @@ axios.defaults.withCredentials = true
 export const fetchRegister = async (registerData: FormRegisterData) => {
   try {
     const res = await axios.post('http://localhost:1200/api/auth/register', registerData)
-    return res.data
+    console.log('res', res)
+    return res
   } catch (error) {
     if (axios.isAxiosError(error)) {
       return error.response?.data.message
@@ -16,7 +17,6 @@ export const fetchRegister = async (registerData: FormRegisterData) => {
   }
 }
 
-// Переменовать на login
 export const authThunk = createAsyncThunk(
   'auth',
   async (data: FromAuthData, { rejectWithValue }) => {

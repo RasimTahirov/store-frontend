@@ -1,9 +1,9 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Toaster } from '@/components/ui/sonner'
 
 import useRegisterSubmit from '../hooks/useRegisterForm'
 
-// Сделать этот компонент переиспользуемым
 const RegisterForm = () => {
   const { handleSubmit, register, errors, error, onSumbit } = useRegisterSubmit()
 
@@ -62,6 +62,7 @@ const RegisterForm = () => {
       <div className='flex justify-center'>
         <Button type='submit'>Создать аккаунт</Button>
       </div>
+      <Toaster />
     </form>
   )
 }
