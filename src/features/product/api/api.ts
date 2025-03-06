@@ -19,9 +19,31 @@ export const getWomanCategories = async () => {
   }
 }
 
-export const getCategoryByUrl = async (url: string | undefined) => {
+// export const getCategoryByUrl = async ({url, page, limit}: {url: string, page: number, limit: number}) => {
+//   try {
+//     const res = await axios.get(`http://localhost:1200/api/user/category/${url}`)
+//     return res.data
+//   } catch (error) {
+//     console.log('Ошибка', error)
+//   }
+// }
+
+export const getCategoryByUrl = async ({
+  url,
+  page,
+  limit,
+}: {
+  url: string
+  page: number
+  limit: number
+}) => {
   try {
-    const res = await axios.get(`http://localhost:1200/api/user/category/${url}`)
+    const res = await axios.get(`http://localhost:1200/api/user/category/${url}`, {
+      params: {
+        page,
+        limit,
+      },
+    })
     return res.data
   } catch (error) {
     console.log('Ошибка', error)

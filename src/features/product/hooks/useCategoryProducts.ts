@@ -7,23 +7,40 @@ import { getCategoryByUrl } from '../api/api'
 import productUrl from '../utils/productUrl'
 
 const useCategoryProducts = () => {
-  const [categoryProduct, setCategoryProduct] = useState<IProducts>()
-  const url = usePathname()
+  const [categoryProduct, setCategoryProduct] = useState<any>()
+  const [currentPage, setCurrentPage] = useState(1)
+  const categoryUrl = usePathname()
 
-  console.log(categoryProduct)
+  const totalPage = categoryProduct?.meta?.totalPages || 0
+  const arrayTotalPage = Array.from({ length: totalPage }, (_, i) => i + 1)
 
-  const urlApi = productUrl(url)
+  const handlePage = (page: number) => {
+    setCurrentPage(page)
+    setCategoryProduct({ page, limit: 1 })
+  }
 
   useEffect(() => {
+    const url = productUrl(categoryUrl)
+    console.log(categoryUrl)
+
     const fetchCategory = async () => {
-      const category = await getCategoryByUrl(urlApi)
-      setCategoryProduct(category)
+      if (url) {
+        const category = await getCategoryByUrl({ url, page: currentPage, limit: 2 })
+        setCategoryProduct(category)
+      }
     }
 
     fetchCategory()
-  }, [urlApi])
+  }, [categoryUrl, currentPage])
 
-  return { categoryProduct, urlApi }
+  return {
+    arrayTotalPage,
+    currentPage,
+    totalPage,
+    handlePage,
+    categoryProduct,
+    url: productUrl(categoryUrl),
+  }
 }
 
 export default useCategoryProducts

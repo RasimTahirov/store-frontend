@@ -14,13 +14,14 @@ const ProductCarousel: React.FC<ProductInfoProps> = ({ product }) => {
     <div className='flex justify-end'>
       <Carousel className='max-w-[700px]'>
         <CarouselContent>
-          {product?.images.map((img, index) => (
-            <CarouselItem key={index}>
-              <CardContent className='px-0 flex aspect-square items-center justify-center'>
-                <img src={img} />
-              </CardContent>
-            </CarouselItem>
-          ))}
+          {Array.isArray(product?.images) &&
+            product?.images.map((img, index) => (
+              <CarouselItem key={index}>
+                <CardContent className='px-0 flex aspect-square items-center justify-center'>
+                  <img src={img} />
+                </CardContent>
+              </CarouselItem>
+            ))}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
