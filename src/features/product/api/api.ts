@@ -61,3 +61,12 @@ export const getProductByIdThunk = createAsyncThunk(
     }
   }
 )
+
+export const search = async (title: string) => {
+  try {
+    const res = await axios.get(`http://localhost:1200/api/user/search?title=${title}`)
+    return res.data
+  } catch (error) {
+    console.log('error')
+  }
+}

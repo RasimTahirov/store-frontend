@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 
-import { deleteCartItem, getItemCartThunk } from '../api/api'
+import { deleteCartItem, getItemCartThunk, payment } from '../api/api'
 import { removeCartItem } from '../slice/cart.slice'
 
 const Cart = () => {
@@ -23,6 +23,13 @@ const Cart = () => {
   const openCartSheet = () => {
     setOpenCart(true)
     dispatch(getItemCartThunk())
+  }
+
+  const handlePayment = async (amount: number) => {
+    const res = await payment(amount)
+    if (res?.data.confirmation.type === 'redirect') {
+      window.location.href = res.data.confirmation.confirmation_url
+    }
   }
 
   return (
@@ -73,7 +80,7 @@ const Cart = () => {
               <div className='text-gray-500 flex justify-center'>
                 Общая сумма - {cartItem.cartItems.totalPrice} ₽
               </div>
-              <Button className='w-full'>Оплатить</Button>
+              <Button onClick={() => handlePayment(cartItem.cartItems.totalPrice)} className='w-full'>Оплатить</Button>
             </>
           ) : (
             <p className='text-center text-gray-500'>Корзина пуста</p>

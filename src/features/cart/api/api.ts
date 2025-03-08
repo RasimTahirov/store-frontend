@@ -30,3 +30,15 @@ export const deleteCartItem = async (id: string) => {
     console.log('Ошибка')
   }
 }
+
+export const payment = async (amount: number) => {
+  try {
+    const res = await axios.post('http://localhost:1200/api/payment', {
+      amount
+    })
+    return res
+  } catch (error) {
+    console.log('Ошибка оплаты', error);
+    
+  }
+}
