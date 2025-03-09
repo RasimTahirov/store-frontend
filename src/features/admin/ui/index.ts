@@ -1,0 +1,6 @@
+export { default as ImageProduct } from './imageProduct'
+export { default as InputProductGroup } from './inputProductGroup'
+export { default as InputProductInfo } from './inputProductInfo'
+export { default as ModalTable } from './modalTable'
+export { default as SelectProductGroup } from './selectProductGroup'
+export { default as DashboardTable } from './table'

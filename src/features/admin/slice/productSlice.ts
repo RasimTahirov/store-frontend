@@ -1,14 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { IProduct } from '@/entities/product/types/type'
+import { ICategory } from '@/entities/category/types/type'
 import { getProductByIdThunk } from '@/features/product/api/api'
 
 import { createProductThunk } from '../api/api'
 
+export interface IProduct {
+  id?: string
+  title: string
+  description: string
+  price: string
+  size: string
+  color: string
+  category: string
+  gender: string
+  images: File[]
+  compound: string
+  country: string
+  care: string
+  Category: ICategory
+}
+
 interface initialState {
   error: string | null
   loading: boolean
-  product: IProduct
+  product: IProduct[]
 }
 
 const initialState: initialState = {

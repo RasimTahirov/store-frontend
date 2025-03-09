@@ -1,3 +1,5 @@
+import { ICategory } from '@/entities/category/types/type'
+
 export interface IProduct {
   id?: string
   title: string
@@ -11,6 +13,7 @@ export interface IProduct {
   compound: string
   country: string
   care: string
+  Category: ICategory
 }
 
 export interface IProducts {

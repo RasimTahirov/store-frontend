@@ -13,18 +13,23 @@ const Category = () => {
   return (
     <Layout>
       <GoBack />
-      <div className='flex-col justify-items-center'>
-        <div className='mb-5'>Создание категории</div>
-        <form onSubmit={createCategory} className='w-[700px] grid gap-y-5'>
+      <section className='flex-col justify-items-center'>
+        <h2 className='mb-5'>Создание категории</h2>
+        <form
+          onSubmit={createCategory}
+          className='w-[700px] grid gap-y-5'
+          aria-label='Форма создание категории товара'
+        >
           <Input
             type='text'
             placeholder='Название категории'
             value={categoryName}
+            aria-label='Название категории'
             onChange={handleInputChange}
           />
           <Button>Создать</Button>
         </form>
-      </div>
+      </section>
     </Layout>
   )
 }

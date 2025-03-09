@@ -7,7 +7,7 @@ import { pageConfig } from '@/shared/config/pageConfig'
 const Admin = () => {
   return (
     <Layout>
-      <div className='flex gap-5'>
+      <nav className='flex justify-center gap-5'>
         <Button variant='link'>
           <Link href={pageConfig.admin_dashboard}>Дашборд</Link>
         </Button>
@@ -17,7 +17,7 @@ const Admin = () => {
         <Button variant='link'>
           <Link href={pageConfig.admin_product}>Управление товарами</Link>
         </Button>
-      </div>
+      </nav>
     </Layout>
   )
 }

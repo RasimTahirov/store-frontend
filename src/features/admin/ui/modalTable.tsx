@@ -39,7 +39,7 @@ const ModalTable: React.FC<ModalTableProps> = ({ openDialog, setOpenDialog, user
   const handleDeleteUser = async (id: string | undefined) => {
     await deleteUser(id)
     setOpenDialog(false)
-    toast.success('Пользователь удалён') // Возможно перенести ответы с сервера сюда
+    toast.success('Пользователь удалён')
   }
 
   return (
@@ -107,7 +107,10 @@ const ModalTable: React.FC<ModalTableProps> = ({ openDialog, setOpenDialog, user
             </div>
           </div>
 
-          <form onSubmit={e => handleSaveRole(e, userData?.id, roleValue)}>
+          <form
+            onSubmit={e => handleSaveRole(e, userData?.id, roleValue)}
+            aria-label='Форма управление пользователем'
+          >
             <div className='mb-2.5'>
               <Select value={roleValue} onValueChange={handleSelectChange}>
                 <SelectTrigger>
@@ -124,7 +127,12 @@ const ModalTable: React.FC<ModalTableProps> = ({ openDialog, setOpenDialog, user
                 </SelectContent>
               </Select>
             </div>
-            <Button className='w-full' type='submit' disabled={!roleValue}>
+            <Button
+              className='w-full'
+              type='submit'
+              disabled={!roleValue}
+              aria-label='Сохранить роль'
+            >
               Сохранить роль
             </Button>
           </form>
@@ -133,6 +141,7 @@ const ModalTable: React.FC<ModalTableProps> = ({ openDialog, setOpenDialog, user
             className='w-full'
             variant='destructive'
             onClick={() => handleDeleteUser(userData?.id)}
+            aria-label='Удалить пользователя'
           >
             Удалить пользователя
           </Button>

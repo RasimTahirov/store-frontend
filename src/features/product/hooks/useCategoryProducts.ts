@@ -4,10 +4,11 @@ import { useEffect, useState } from 'react'
 import { IProducts } from '@/entities/product/types/type'
 
 import { getCategoryByUrl } from '../api/api'
+import { IPorductResponse } from '../types/type'
 import productUrl from '../utils/productUrl'
 
 const useCategoryProducts = () => {
-  const [categoryProduct, setCategoryProduct] = useState<any>()
+  const [categoryProduct, setCategoryProduct] = useState<IPorductResponse>()
   const [currentPage, setCurrentPage] = useState(1)
   const categoryUrl = usePathname()
 
@@ -19,9 +20,9 @@ const useCategoryProducts = () => {
     setCategoryProduct({ page, limit: 1 })
   }
 
+  console.log(categoryProduct)
   useEffect(() => {
     const url = productUrl(categoryUrl)
-    console.log(categoryUrl)
 
     const fetchCategory = async () => {
       if (url) {

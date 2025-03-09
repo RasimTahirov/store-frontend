@@ -77,10 +77,16 @@ const Cart = () => {
                   </React.Fragment>
                 ))}
               </ul>
-              <div className='text-gray-500 flex justify-center'>
+              <span className='text-gray-500 flex justify-center'>
                 Общая сумма - {cartItem.cartItems.totalPrice} ₽
-              </div>
-              <Button onClick={() => handlePayment(cartItem.cartItems.totalPrice)} className='w-full'>Оплатить</Button>
+              </span>
+              <Button
+                onClick={() => handlePayment(cartItem.cartItems.totalPrice)}
+                className='w-full'
+                aria-label='Оплатить'
+              >
+                Оплатить
+              </Button>
             </>
           ) : (
             <p className='text-center text-gray-500'>Корзина пуста</p>

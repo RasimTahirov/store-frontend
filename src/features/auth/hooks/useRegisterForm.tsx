@@ -31,7 +31,7 @@ const useRegisterSubmit = () => {
       toast.success('Аккаунт успешно создан')
       setTimeout(() => {
         navigate.push(pageConfig.authorization)
-      }, 2500)
+      }, 2000)
     }
   }
 

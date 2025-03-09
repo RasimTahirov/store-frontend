@@ -5,10 +5,7 @@ import { Button } from '@/components/ui/button'
 import GoBack from '@/shared/ui/goBack'
 
 import useProduct from '../hooks/useProduct'
-import ImageProduct from '../ui/imageProduct'
-import InputProductGroup from '../ui/inputProductGroup'
-import InputProductInfo from '../ui/inputProductInfo'
-import SelectProductGroup from '../ui/selectProductGroup'
+import { ImageProduct, InputProductGroup, InputProductInfo, SelectProductGroup } from '../ui'
 
 const Product = () => {
   const {
@@ -24,7 +21,7 @@ const Product = () => {
     <Layout>
       <GoBack />
       <div className='flex-col justify-items-center'>
-        <div className='mb-5'>Создание товара</div>
+        <h2 className='mb-5'>Создание товара</h2>
         <form onSubmit={onSubmit} className='w-[700px] grid gap-y-5'>
           <InputProductGroup formData={formData} handleInputChange={handleInputChange} />
           <SelectProductGroup

@@ -8,7 +8,6 @@ axios.defaults.withCredentials = true
 export const fetchRegister = async (registerData: FormRegisterData) => {
   try {
     const res = await axios.post('http://localhost:1200/api/auth/register', registerData)
-    console.log('res', res)
     return res
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -37,7 +36,7 @@ export const logout = async () => {
     const res = await axios.post('http://localhost:1200/api/auth/logout')
     return res.data
   } catch (error) {
-    console.log('Ошибка при выходе', error)
+    console.error('Ошибка при выходе из аккаунта', error)
   }
 }
 
@@ -46,7 +45,7 @@ export const userDataThunk = createAsyncThunk('userData', async () => {
     const res = await axios.get('http://localhost:1200/api/user/data')
     return res.data
   } catch (error) {
-    console.log('Ошибка получении данных', error)
+    console.error('Ошибка получении данных', error)
   }
 })
 
@@ -55,6 +54,6 @@ export const checkAuthStatusThunk = createAsyncThunk('checkAuthStatus', async ()
     const res = await axios.get('http://localhost:1200/api/user/status')
     return res.data
   } catch (error) {
-    console.log('Ошибка данных', error)
+    console.error('Ошибка данных', error)
   }
 })

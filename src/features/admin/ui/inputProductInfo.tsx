@@ -18,6 +18,7 @@ const InputProductInfo: React.FC<InputProductInfo> = ({ formData, handleInputCha
         name='compound'
         value={formData.compound}
         onChange={handleInputChange}
+        aria-label='Состав'
       />
       <Input
         type='text'
@@ -25,12 +26,14 @@ const InputProductInfo: React.FC<InputProductInfo> = ({ formData, handleInputCha
         name='country'
         value={formData.country}
         onChange={handleInputChange}
+        aria-label='Страна изготовитель'
       />
       <Textarea
         placeholder='Уход за товаром'
         name='care'
         value={formData.care}
         onChange={handleInputChange}
+        aria-label='Уход за товаром'
       />
     </>
   )

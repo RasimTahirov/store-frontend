@@ -16,12 +16,14 @@ const InputProductGroup: React.FC<InputProductGroupProps> = ({ formData, handleI
         name='title'
         value={formData.title}
         onChange={handleInputChange}
+        aria-label='Название'
       />
       <Textarea
         placeholder='Описание'
         name='description'
         value={formData.description}
         onChange={handleInputChange}
+        aria-label='Описание'
       />
       <Input
         type='text'
@@ -29,6 +31,7 @@ const InputProductGroup: React.FC<InputProductGroupProps> = ({ formData, handleI
         name='price'
         value={formData.price}
         onChange={handleInputChange}
+        aria-label='Цена'
       />
       <Input
         type='text'
@@ -36,6 +39,7 @@ const InputProductGroup: React.FC<InputProductGroupProps> = ({ formData, handleI
         name='color'
         value={formData.color}
         onChange={handleInputChange}
+        aria-label='Цвет'
       />
     </>
   )

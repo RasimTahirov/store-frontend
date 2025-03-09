@@ -9,9 +9,8 @@ import { logout, userDataThunk } from '@/features/auth/api/api'
 import { pageConfig } from '@/shared/config/pageConfig'
 
 const UserPanel = () => {
-  const dispatch = useDispatch<AppDispatch>()
   const navigation = useRouter()
-
+  const dispatch = useDispatch<AppDispatch>()
   const { user } = useSelector((state: RootState) => state.auth)
 
   const handleLogout = async () => {
@@ -24,21 +23,22 @@ const UserPanel = () => {
   }, [dispatch])
 
   return (
-    <div className='flex justify-between mb-5'>
+    <section className='flex justify-between mb-5'>
       <div className='flex justify-start'>
-        <div className='text-2xl font-normal'>Здравствуйте, {user?.name}</div>
+        <p className='text-2xl font-normal'>Здравствуйте, {user?.name}</p>
       </div>
+
       <div className='flex justify-end gap-x-2.5'>
         {user?.role === 'ADMIN' ? (
-          <Button variant='secondary'>
-            <Link href={pageConfig.admin}>Войти в админ панель</Link>
-          </Button>
+          <Link href={pageConfig.admin} aria-label='Войти в админ панель'>
+            <Button variant='secondary'>Войти в админ панель</Button>
+          </Link>
         ) : null}
-        <Button variant='destructive' role='button' onClick={handleLogout}>
+        <Button variant='destructive' onClick={handleLogout}>
           Выход
         </Button>
       </div>
-    </div>
+    </section>
   )
 }
 

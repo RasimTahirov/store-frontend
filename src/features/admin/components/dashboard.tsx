@@ -3,7 +3,7 @@ import GoBack from '@/shared/ui/goBack'
 
 import Pagination from '../../../shared/ui/pagination'
 import useDashboard from '../hooks/useDashboard'
-import DashboardTable from '../ui/table'
+import { DashboardTable } from '../ui'
 
 const Dashboard = () => {
   const { arrayTotalPage, handlePage, currentPage, totalPage, users } = useDashboard()
