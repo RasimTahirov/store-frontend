@@ -23,7 +23,7 @@ const UserPanel = () => {
   }, [dispatch])
 
   return (
-    <section className='flex justify-between mb-5'>
+    <section className='sm:flex justify-between mb-5 max-sm:grid max-sm:justify-center max-sm:justify-items-center'>
       <div className='flex justify-start'>
         <p className='text-2xl font-normal'>Здравствуйте, {user?.name}</p>
       </div>

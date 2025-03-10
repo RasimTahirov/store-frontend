@@ -11,7 +11,7 @@ import { ProductInfoProps } from '../types/type'
 
 const ProductCarousel: React.FC<ProductInfoProps> = ({ product }) => {
   return (
-    <div className='flex justify-end'>
+    <div className='flex justify-end max-lg:justify-center'>
       <Carousel className='max-w-[700px]'>
         <CarouselContent>
           {Array.isArray(product?.images) &&
@@ -23,8 +23,8 @@ const ProductCarousel: React.FC<ProductInfoProps> = ({ product }) => {
               </CarouselItem>
             ))}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className='max-xl:hidden' />
+        <CarouselNext className='max-xl:hidden' />
       </Carousel>
     </div>
   )

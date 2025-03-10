@@ -11,11 +11,11 @@ const CategoryProduct = () => {
 
   return (
     <Layout>
-      <div className='flex flex-col min-h-screen'>
-        <div className='grid grid-cols-5 justify-center gap-x-5 gap-y-5'>
+      <div className='flex flex-col min-h-screen mt-5'>
+        <div className='grid grid-cols-5 max-xl:grid-cols-4 max-md:grid-cols-2 max-sm:grid-cols-1 justify-center gap-x-5 gap-y-5'>
           {Array.isArray(categoryProduct?.data) &&
             categoryProduct.data.map(product => (
-              <div key={product.id} className='w-80 cursor-pointer'>
+              <div key={product.id} className='cursor-pointer'>
                 <Link href={`${url}/${product.id}`}>
                   <div className='mb-1.5'>
                     <img src={product.images[0]} />

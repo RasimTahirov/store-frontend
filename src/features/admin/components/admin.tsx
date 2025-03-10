@@ -7,7 +7,7 @@ import { pageConfig } from '@/shared/config/pageConfig'
 const Admin = () => {
   return (
     <Layout>
-      <nav className='flex justify-center gap-5'>
+      <nav className='flex justify-center gap-5 max-sm:grid'>
         <Button variant='link'>
           <Link href={pageConfig.admin_dashboard}>Дашборд</Link>
         </Button>

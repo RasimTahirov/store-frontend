@@ -17,7 +17,7 @@ const Category = () => {
         <h2 className='mb-5'>Создание категории</h2>
         <form
           onSubmit={createCategory}
-          className='w-[700px] grid gap-y-5'
+          className='lg:w-[700px] md:w-[500px] sm:w-[300px] grid gap-y-5'
           aria-label='Форма создание категории товара'
         >
           <Input

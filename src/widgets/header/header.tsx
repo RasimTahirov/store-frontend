@@ -38,7 +38,7 @@ const Header = () => {
 
   return (
     <header className='min-h-20 flex items-center justify-between'>
-      <div className='flex items-center justify-start gap-x-5'>
+      <div className='flex items-center justify-start max-lg::gap-1 xl:gap-x-5'>
         <Logo />
         <Navigation />
       </div>

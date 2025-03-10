@@ -26,7 +26,7 @@ const useCategoryProducts = () => {
 
     const fetchCategory = async () => {
       if (url) {
-        const category = await getCategoryByUrl({ url, page: currentPage, limit: 2 })
+        const category = await getCategoryByUrl({ url, page: currentPage, limit: 10 })
         setCategoryProduct(category)
       }
     }

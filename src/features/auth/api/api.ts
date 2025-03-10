@@ -21,7 +21,7 @@ export const authThunk = createAsyncThunk(
   async (data: FromAuthData, { rejectWithValue }) => {
     try {
       const res = await axios.post('http://localhost:1200/api/auth/login', data)
-      return res.status
+      return res.data
     } catch (error) {
       if (axios.isAxiosError(error)) {
         return rejectWithValue(error.response?.data.message || 'Неизвестная ошибка')

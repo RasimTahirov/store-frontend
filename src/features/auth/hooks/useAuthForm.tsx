@@ -26,7 +26,7 @@ const useAuthForm = () => {
 
   const onSumbit = async (data: FromAuthData) => {
     const result = await dispatch(authThunk(data))
-    if (result.payload === 201) {
+    if (result.type === 'auth/fulfilled') {
       navigation.push(pageConfig.home)
     }
   }

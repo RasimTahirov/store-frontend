@@ -19,7 +19,7 @@ const Auth = () => {
           <h3 className='flex justify-center text-xl'>{isRegistration ? 'Регистрация' : 'Вход'}</h3>
         </CardHeader>
         <CardContent>{isRegistration ? <RegisterForm /> : <AuthForm />}</CardContent>
-        <CardFooter className='justify-center gap-[5px]'>
+        <CardFooter className='max-sm:grid max-sm:justify-items-center justify-center gap-[5px]'>
           {isRegistration ? <div>Есть аккаунт?</div> : <div>Нет аккаунт?</div>}
           {isRegistration ? (
             <Link className='link-button' href={pageConfig.authorization}>

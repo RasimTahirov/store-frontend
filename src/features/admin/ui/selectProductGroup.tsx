@@ -7,8 +7,8 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { ICategory } from '@/entities/category/types/type'
-import { IProduct } from '@/entities/product/types/type'
 
+import { IProduct } from '../slice/productSlice'
 import { gender, size } from '../utils/utils'
 
 interface SelectProductGroupProps {

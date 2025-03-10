@@ -61,3 +61,21 @@ export const search = async (title: string) => {
     console.error(error)
   }
 }
+
+export const getLastManProductThunk = createAsyncThunk('getLastManProduct', async () => {
+  try {
+    const res = await axios.get('http://localhost:1200/api/user/products/man')
+    return res.data
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+export const getLastWomanProductThunk = createAsyncThunk('getLastWomanProduct', async () => {
+  try {
+    const res = await axios.get('http://localhost:1200/api/user/products/woman')
+    return res.data
+  } catch (error) {
+    console.error(error)
+  }
+})

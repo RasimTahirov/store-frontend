@@ -9,28 +9,28 @@ export interface IProduct {
   id?: string
   title: string
   description: string
-  price: string
+  price: number
   size: string
   color: string
   category: string
   gender: string
-  images: File[]
+  images: string[]
   compound: string
   country: string
   care: string
-  Category: ICategory
+  // Category: ICategory
 }
 
 interface initialState {
   error: string | null
   loading: boolean
-  product: IProduct[]
+  product: IProduct | null
 }
 
 const initialState: initialState = {
   error: null,
   loading: false,
-  product: [],
+  product: null,
 }
 
 const productSlice = createSlice({

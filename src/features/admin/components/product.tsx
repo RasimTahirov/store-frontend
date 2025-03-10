@@ -22,7 +22,7 @@ const Product = () => {
       <GoBack />
       <div className='flex-col justify-items-center'>
         <h2 className='mb-5'>Создание товара</h2>
-        <form onSubmit={onSubmit} className='w-[700px] grid gap-y-5'>
+        <form onSubmit={onSubmit} className='lg:w-[700px] md:w-[500px] sm:w-[300px] grid gap-y-5'>
           <InputProductGroup formData={formData} handleInputChange={handleInputChange} />
           <SelectProductGroup
             formData={formData}

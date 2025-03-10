@@ -1,6 +1,8 @@
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { IProduct } from '@/entities/product/types/type'
+
+// import { IProduct } from '@/entities/product/types/type'
+import { IProduct } from '../slice/productSlice'
 
 interface InputProductGroupProps {
   formData: IProduct

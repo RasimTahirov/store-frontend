@@ -7,7 +7,7 @@ import { pageConfig } from '../config/pageConfig'
 
 const UserActions = ({ authStatus }: { authStatus: boolean }) => {
   return (
-    <div className='flex gap-x-2.5 ml-20'>
+    <div className='flex gap-x-2.5 ml-2.5'>
       {authStatus ? (
         <>
           <Cart />

@@ -22,12 +22,12 @@ const Product = () => {
       await addCart(id, quantity)
 
       const newItem = {
-        id: product.id,
-        productId: product.id,
+        id: product?.id,
+        productId: product?.id,
         product: {
-          title: product.title,
-          images: product.images,
-          price: product.price,
+          title: product?.title,
+          images: product?.images,
+          price: product?.price,
         },
         quantity,
       }
@@ -40,11 +40,13 @@ const Product = () => {
   return (
     <Layout>
       <GoBack />
-      <div className='grid grid-cols-2 gap-20'>
+      <div className='grid grid-cols-2 gap-20 max-lg:grid-cols-1 mt-10'>
         <ProductCarousel product={product} />
         <div className='flex flex-col gap-5'>
           <ProductInfo product={product} />
-          <Button onClick={() => handleAddCart(product.id, 1)}>Добавить в корзину</Button>
+          <Button onClick={() => handleAddCart(product?.id, 1)} className='mb-10'>
+            Добавить в корзину
+          </Button>
         </div>
       </div>
       <Toaster />

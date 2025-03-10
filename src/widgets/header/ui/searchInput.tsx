@@ -10,9 +10,10 @@ const SearchInput: React.FC<SearchInputProps> = ({ title, setTitle }) => {
     <form role='search'>
       <Input
         type='search'
-        placeholder='Поиск товаров..., пока не работает :('
-        className=' w-[350px] input-search'
+        placeholder='Поиск товаров...'
+        className='w-full min-w-[170px] sm:w-[250px] md:w-[400px] lg:w-[500px] xl:w-[600px] input-search'
         value={title}
+        aria-label='Поиск'
         onChange={e => setTitle(e.target.value)}
       />
     </form>
