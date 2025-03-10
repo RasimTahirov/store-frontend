@@ -25,8 +25,10 @@ const useAuthForm = () => {
   })
 
   const onSumbit = async (data: FromAuthData) => {
-    await dispatch(authThunk(data))
-    navigation.push(pageConfig.home)
+    const result = await dispatch(authThunk(data))
+    if (result.type === 'auth/fulfilled') {
+      navigation.push(pageConfig.home)
+    }
   }
 
   return { register, handleSubmit, errors, error, onSumbit }

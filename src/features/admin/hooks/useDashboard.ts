@@ -10,14 +10,14 @@ const useDashboard = () => {
   const totalPage = users?.meta?.totalPages || 0
   const arrayTotalPage = Array.from({ length: totalPage }, (_, i) => i + 1)
 
-  const handlePage = (page: number) => {
+  const handlePage = async (page: number) => {
     setCurrentPage(page)
-    getAlUser({ page, limit: 1 })
+    await getAlUser({ page, limit: 10 })
   }
 
   useEffect(() => {
     const fetchDashboard = async () => {
-      const res = await getAlUser({ page: currentPage, limit: 2 })
+      const res = await getAlUser({ page: currentPage, limit: 20 })
       setUsers(res)
     }
     fetchDashboard()

@@ -1,28 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { IProduct } from '@/entities/product/types/type'
+import { ICategory } from '@/entities/category/types/type'
 import { getProductByIdThunk } from '@/features/product/api/api'
 
 import { createProductThunk } from '../api/api'
 
-// interface IProduct {
-//   id: string
-//   title: string
-//   description: string
-//   price: number
-//   size: string
-//   color: string
-//   gender: string
-//   image: string[]
-//   compound: string
-//   country: string
-//   care: string
-// }
+export interface IProduct {
+  id?: string
+  title: string
+  description: string
+  price: number
+  size: string
+  color: string
+  category: string
+  gender: string
+  images: string[]
+  compound: string
+  country: string
+  care: string
+  // Category: ICategory
+}
 
 interface initialState {
   error: string | null
   loading: boolean
-  product: IProduct
+  product: IProduct | null
 }
 
 const initialState: initialState = {
@@ -40,13 +42,11 @@ const productSlice = createSlice({
       .addCase(createProductThunk.pending, state => {
         state.error = null
         state.loading = true
-        console.log('Была загрузка...')
       })
       .addCase(createProductThunk.fulfilled, (state, action) => {
         state.error = null
         state.loading = false
         state.product = action.payload
-        console.log('action.payload', action.payload)
       })
       .addCase(createProductThunk.rejected, (state, action) => {
         state.loading = false

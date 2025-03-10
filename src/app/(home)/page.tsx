@@ -1,7 +1,7 @@
-import Header from '@/widgets/header/header'
+import Home from '@/widgets/home/Home'
 
-const Home = () => {
-  return <Header />
+const HomePage = () => {
+  return <Home />
 }
 
-export default Home
+export default HomePage

@@ -6,7 +6,7 @@ export const getManCategories = async () => {
     const res = await axios.get('http://localhost:1200/api/user/categories/man')
     return res.data
   } catch (error) {
-    console.log('Ошибка', error)
+    console.error('Ошибка при получении категории', error)
   }
 }
 
@@ -15,16 +15,29 @@ export const getWomanCategories = async () => {
     const res = await axios.get('http://localhost:1200/api/user/categories/woman')
     return res.data
   } catch (error) {
-    console.log('Ошибка', error)
+    console.error('Ошибка при получении категории', error)
   }
 }
 
-export const getCategoryByUrl = async (url: string | undefined) => {
+export const getCategoryByUrl = async ({
+  url,
+  page,
+  limit,
+}: {
+  url: string
+  page: number
+  limit: number
+}) => {
   try {
-    const res = await axios.get(`http://localhost:1200/api/user/category/${url}`)
+    const res = await axios.get(`http://localhost:1200/api/user/category/${url}`, {
+      params: {
+        page,
+        limit,
+      },
+    })
     return res.data
   } catch (error) {
-    console.log('Ошибка', error)
+    console.error('Ошибка в получении товаров', error)
   }
 }
 
@@ -35,7 +48,34 @@ export const getProductByIdThunk = createAsyncThunk(
       const res = await axios.get(`http://localhost:1200/api/user/product/${id}`)
       return res.data
     } catch (error) {
-      console.log('Ошибка')
+      console.error('Ошибка в получении товара', error)
     }
   }
 )
+
+export const search = async (title: string) => {
+  try {
+    const res = await axios.get(`http://localhost:1200/api/user/search?title=${title}`)
+    return res.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getLastManProductThunk = createAsyncThunk('getLastManProduct', async () => {
+  try {
+    const res = await axios.get('http://localhost:1200/api/user/products/man')
+    return res.data
+  } catch (error) {
+    console.error(error)
+  }
+})
+
+export const getLastWomanProductThunk = createAsyncThunk('getLastWomanProduct', async () => {
+  try {
+    const res = await axios.get('http://localhost:1200/api/user/products/woman')
+    return res.data
+  } catch (error) {
+    console.error(error)
+  }
+})

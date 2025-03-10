@@ -11,7 +11,7 @@ export const getAlUser = async ({ page, limit }: { page: number; limit: number }
     })
     return res.data
   } catch (error) {
-    console.log('Ошибка в получении пользователей', error)
+    console.error('Ошибка в получении пользователей', error)
   }
 }
 
@@ -22,7 +22,7 @@ export const updateRole = async (id: string | undefined, data: string) => {
     })
     return res.data
   } catch (error) {
-    console.log('Ошибка при изменении роли', error)
+    console.error('Ошибка при изменении роли', error)
   }
 }
 
@@ -31,7 +31,16 @@ export const deleteUser = async (id: string | undefined) => {
     const res = await axios.delete(`http://localhost:1200/api/admin/user/${id}`)
     return res.data
   } catch (error) {
-    console.log('Ошибка при удалении пользователя', error)
+    console.error('Ошибка при удалении пользователя', error)
+  }
+}
+
+export const getAllCategories = async () => {
+  try {
+    const res = await axios.get('http://localhost:1200/api/user/categories')
+    return res.data
+  } catch (error) {
+    console.error('Ошибка при получении категории', error)
   }
 }
 
@@ -42,7 +51,7 @@ export const createCategoryThunk = createAsyncThunk('createCategory', async (nam
     })
     return res.data
   } catch (error) {
-    console.log('Ошибка при создании регистрации', error)
+    console.error('Ошибка при создании категории', error)
   }
 })
 
@@ -55,17 +64,6 @@ export const createProductThunk = createAsyncThunk('createProduct', async (data:
     })
     return res.data
   } catch (error) {
-    console.log('Ошибка', error)
+    console.error('Ошибка при создании товара', error)
   }
 })
-
-export const getAllCategories = async () => {
-  try {
-    const res = await axios.get('http://localhost:1200/api/user/categories')
-    return res.data
-  } catch (error) {
-    console.log('Ошибка при получении категории', error)
-  }
-} // Сделать отдельно получение категорий для админов на бэке (ВОЗМОЖНО :D)
-
-// !!Обработать все ошибки

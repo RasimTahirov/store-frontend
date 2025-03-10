@@ -62,15 +62,6 @@ body {
   }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground text-lg font-light h-full;
-  }
-}
-
 @layer components {
   .link-button {
     @apply hover:opacity-70 transition-opacity;
@@ -98,6 +89,6 @@ body {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground !px-10;
+    @apply bg-background text-foreground text-lg font-light h-full mx-5 xl:mx-10;
   }
 }

@@ -1,11 +1,11 @@
 'use client'
 
+import Layout from '@/app/(layout)/layout'
 import { Button } from '@/components/ui/button'
+import GoBack from '@/shared/ui/goBack'
 
 import useProduct from '../hooks/useProduct'
-import ImageProduct from '../ui/imageProduct'
-import InputProductGroup from '../ui/inputProductGroup'
-import SelectProductGroup from '../ui/selectProductGroup'
+import { ImageProduct, InputProductGroup, InputProductInfo, SelectProductGroup } from '../ui'
 
 const Product = () => {
   const {
@@ -18,19 +18,23 @@ const Product = () => {
   } = useProduct()
 
   return (
-    <div className='flex-col justify-items-center'>
-      <div>Создание товара 123</div>
-      <form onSubmit={onSubmit} className='w-80 grid gap-y-5'>
-        <InputProductGroup formData={formData} handleInputChange={handleInputChange} />
-        <SelectProductGroup
-          formData={formData}
-          handleSelectChange={handleSelectChange}
-          categories={categories}
-        />
-        <ImageProduct handleFileChange={handleFileChange} />
-        <Button type='submit'>Создать товар</Button>
-      </form>
-    </div>
+    <Layout>
+      <GoBack />
+      <div className='flex-col justify-items-center'>
+        <h2 className='mb-5'>Создание товара</h2>
+        <form onSubmit={onSubmit} className='lg:w-[700px] md:w-[500px] sm:w-[300px] grid gap-y-5'>
+          <InputProductGroup formData={formData} handleInputChange={handleInputChange} />
+          <SelectProductGroup
+            formData={formData}
+            handleSelectChange={handleSelectChange}
+            categories={categories}
+          />
+          <ImageProduct handleFileChange={handleFileChange} />
+          <InputProductInfo formData={formData} handleInputChange={handleInputChange} />
+          <Button type='submit'>Создать товар</Button>
+        </form>
+      </div>
+    </Layout>
   )
 }
 

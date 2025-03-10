@@ -1,14 +1,14 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Toaster } from '@/components/ui/sonner'
 
 import useRegisterSubmit from '../hooks/useRegisterForm'
 
-// Сделать этот компонент переиспользуемым
 const RegisterForm = () => {
   const { handleSubmit, register, errors, error, onSumbit } = useRegisterSubmit()
 
   return (
-    <form onSubmit={handleSubmit(onSumbit)}>
+    <form onSubmit={handleSubmit(onSumbit)} aria-label='Форма регистрации'>
       <div className='grid gap-2.5 mb-5'>
         <div>
           <Input
@@ -17,8 +17,9 @@ const RegisterForm = () => {
             placeholder='Имя'
             {...register('name')}
           />
-          {errors.name && <div className='error-text'>{errors.name.message}</div>}
+          {errors.name && <span className='error-text'>{errors.name.message}</span>}
         </div>
+
         <div>
           <Input
             className={errors.surname && 'error-input'}
@@ -26,8 +27,9 @@ const RegisterForm = () => {
             placeholder='Фамилия'
             {...register('surname')}
           />
-          {errors.surname && <div className='error-text'>{errors.surname.message}</div>}
+          {errors.surname && <span className='error-text'>{errors.surname.message}</span>}
         </div>
+
         <div>
           <Input
             className={errors.email && 'error-input'}
@@ -35,8 +37,9 @@ const RegisterForm = () => {
             placeholder='Почта'
             {...register('email')}
           />
-          {errors.email && <div className='error-text'>{errors.email.message}</div>}
+          {errors.email && <span className='error-text'>{errors.email.message}</span>}
         </div>
+
         <div>
           <Input
             className={errors.password && 'error-input'}
@@ -44,8 +47,9 @@ const RegisterForm = () => {
             placeholder='Пароль'
             {...register('password')}
           />
-          {errors.password && <div className='error-text'>{errors.password.message}</div>}
+          {errors.password && <span className='error-text'>{errors.password.message}</span>}
         </div>
+
         <div>
           <Input
             className={errors.passwordRepeat && 'error-input'}
@@ -54,14 +58,17 @@ const RegisterForm = () => {
             {...register('passwordRepeat')}
           />
           {errors.passwordRepeat && (
-            <div className='error-text'>{errors.passwordRepeat.message}</div>
+            <span className='error-text'>{errors.passwordRepeat.message}</span>
           )}
         </div>
       </div>
       {error && <div className='error-text mb-5'>{error}</div>}
       <div className='flex justify-center'>
-        <Button type='submit'>Создать аккаунт</Button>
+        <Button type='submit' aria-label='Создать аккаунт'>
+          Создать аккаунт
+        </Button>
       </div>
+      <Toaster />
     </form>
   )
 }

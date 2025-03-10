@@ -1,3 +1,5 @@
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
+
 interface PaginationProps {
   handlePage: (page: number) => void
   arrayTotalPage: number[]
@@ -11,18 +13,23 @@ const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   totalPage,
 }) => {
-  return (
-    <div>
+  return arrayTotalPage.length <= 1 ? null : (
+    <div className='flex justify-center gap-2.5 mt-2.5'>
       <button onClick={() => handlePage(currentPage - 1)} disabled={currentPage === 1}>
-        Назад
+        <ChevronLeftIcon stroke={`${currentPage === 1 ? 'gray' : 'black'}`} />
       </button>
       {arrayTotalPage.map(page => (
-        <button onClick={() => handlePage(page)} disabled={currentPage === page} key={page}>
+        <button
+          className={`${currentPage === page ? 'text-gray-500' : ''}`}
+          onClick={() => handlePage(page)}
+          disabled={currentPage === page}
+          key={page}
+        >
           {page}
         </button>
       ))}
       <button onClick={() => handlePage(currentPage + 1)} disabled={currentPage === totalPage}>
-        Вперед
+        <ChevronRightIcon stroke={`${currentPage === totalPage ? 'gray' : 'black'}`} />
       </button>
     </div>
   )

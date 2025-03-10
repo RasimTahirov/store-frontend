@@ -1,6 +1,8 @@
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { IProduct } from '@/entities/product/types/type'
+
+// import { IProduct } from '@/entities/product/types/type'
+import { IProduct } from '../slice/productSlice'
 
 interface InputProductGroupProps {
   formData: IProduct
@@ -16,12 +18,14 @@ const InputProductGroup: React.FC<InputProductGroupProps> = ({ formData, handleI
         name='title'
         value={formData.title}
         onChange={handleInputChange}
+        aria-label='Название'
       />
       <Textarea
         placeholder='Описание'
         name='description'
         value={formData.description}
         onChange={handleInputChange}
+        aria-label='Описание'
       />
       <Input
         type='text'
@@ -29,6 +33,7 @@ const InputProductGroup: React.FC<InputProductGroupProps> = ({ formData, handleI
         name='price'
         value={formData.price}
         onChange={handleInputChange}
+        aria-label='Цена'
       />
       <Input
         type='text'
@@ -36,6 +41,7 @@ const InputProductGroup: React.FC<InputProductGroupProps> = ({ formData, handleI
         name='color'
         value={formData.color}
         onChange={handleInputChange}
+        aria-label='Цвет'
       />
     </>
   )

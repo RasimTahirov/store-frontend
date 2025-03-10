@@ -1,13 +1,16 @@
+import Layout from '@/app/(layout)/layout'
+import GoBack from '@/shared/ui/goBack'
+
+import Pagination from '../../../shared/ui/pagination'
 import useDashboard from '../hooks/useDashboard'
-import Pagination from '../ui/pagination'
-import DashboardTable from '../ui/table'
+import { DashboardTable } from '../ui'
 
 const Dashboard = () => {
   const { arrayTotalPage, handlePage, currentPage, totalPage, users } = useDashboard()
 
   return (
-    <>
-      <div>Дашборд</div>
+    <Layout>
+      <GoBack />
       <DashboardTable users={users} />
       <Pagination
         handlePage={handlePage}
@@ -15,7 +18,7 @@ const Dashboard = () => {
         currentPage={currentPage}
         totalPage={totalPage}
       />
-    </>
+    </Layout>
   )
 }
 

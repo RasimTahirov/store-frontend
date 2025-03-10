@@ -9,7 +9,7 @@ export const addCart = async (id: string, quantity: number = 1) => {
     })
     return res.data
   } catch (error) {
-    console.log('Ошибка')
+    console.error('Ошибка при добавление товара в корзину')
   }
 }
 
@@ -18,7 +18,7 @@ export const getItemCartThunk = createAsyncThunk('getItemCart', async () => {
     const res = await axios.get('http://localhost:1200/api/cart')
     return res.data
   } catch (error) {
-    console.log('Ошибка')
+    console.error('Ошибка корзины')
   }
 })
 
@@ -27,6 +27,17 @@ export const deleteCartItem = async (id: string) => {
     const res = await axios.delete(`http://localhost:1200/api/cart/delete/${id}`)
     return res.data
   } catch (error) {
-    console.log('Ошибка')
+    console.error('Ошибка удалении товара')
+  }
+}
+
+export const payment = async (amount: number) => {
+  try {
+    const res = await axios.post('http://localhost:1200/api/payment', {
+      amount,
+    })
+    return res
+  } catch (error) {
+    console.error('Ошибка оплаты')
   }
 }
