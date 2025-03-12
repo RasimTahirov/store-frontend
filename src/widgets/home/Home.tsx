@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Layout from '@/app/(layout)/layout'
 import { AppDispatch, RootState } from '@/app/store/store'
 import { getLastManProductThunk, getLastWomanProductThunk } from '@/features/product/api/api'
+
 import { ProductMan, ProductWoman } from './ui'
 
 const Home = () => {

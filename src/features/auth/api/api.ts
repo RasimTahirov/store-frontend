@@ -2,12 +2,13 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
 import { FormRegisterData, FromAuthData } from '@/entities/auth/types/type'
+import { API_URL } from '@/shared/utils/env.url'
 
 axios.defaults.withCredentials = true
 
 export const fetchRegister = async (registerData: FormRegisterData) => {
   try {
-    const res = await axios.post('http://localhost:1200/api/auth/register', registerData)
+    const res = await axios.post(`${API_URL}/api/auth/register`, registerData)
     return res
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -20,7 +21,7 @@ export const authThunk = createAsyncThunk(
   'auth',
   async (data: FromAuthData, { rejectWithValue }) => {
     try {
-      const res = await axios.post('http://localhost:1200/api/auth/login', data)
+      const res = await axios.post(`${API_URL}/api/auth/login`, data)
       return res.data
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -33,7 +34,7 @@ export const authThunk = createAsyncThunk(
 
 export const logout = async () => {
   try {
-    const res = await axios.post('http://localhost:1200/api/auth/logout')
+    const res = await axios.post(`${API_URL}/api/auth/logout`)
     return res.data
   } catch (error) {
     console.error('Ошибка при выходе из аккаунта', error)
@@ -42,7 +43,7 @@ export const logout = async () => {
 
 export const userDataThunk = createAsyncThunk('userData', async () => {
   try {
-    const res = await axios.get('http://localhost:1200/api/user/data')
+    const res = await axios.get(`${API_URL}/api/user/data`)
     return res.data
   } catch (error) {
     console.error('Ошибка получении данных', error)
@@ -51,7 +52,7 @@ export const userDataThunk = createAsyncThunk('userData', async () => {
 
 export const checkAuthStatusThunk = createAsyncThunk('checkAuthStatus', async () => {
   try {
-    const res = await axios.get('http://localhost:1200/api/user/status')
+    const res = await axios.get(`${API_URL}/api/user/status`)
     return res.data
   } catch (error) {
     console.error('Ошибка данных', error)

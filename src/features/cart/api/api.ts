@@ -1,9 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+import { API_URL } from '@/shared/utils/env.url'
+
 export const addCart = async (id: string, quantity: number = 1) => {
   try {
-    const res = await axios.post('http://localhost:1200/api/cart/add', {
+    const res = await axios.post(`${API_URL}/api/cart/add`, {
       productId: id,
       quantity,
     })
@@ -15,7 +17,7 @@ export const addCart = async (id: string, quantity: number = 1) => {
 
 export const getItemCartThunk = createAsyncThunk('getItemCart', async () => {
   try {
-    const res = await axios.get('http://localhost:1200/api/cart')
+    const res = await axios.get(`${API_URL}/api/cart`)
     return res.data
   } catch (error) {
     console.error('Ошибка корзины')
@@ -24,7 +26,7 @@ export const getItemCartThunk = createAsyncThunk('getItemCart', async () => {
 
 export const deleteCartItem = async (id: string) => {
   try {
-    const res = await axios.delete(`http://localhost:1200/api/cart/delete/${id}`)
+    const res = await axios.delete(`${API_URL}/api/cart/delete/${id}`)
     return res.data
   } catch (error) {
     console.error('Ошибка удалении товара')
@@ -33,7 +35,7 @@ export const deleteCartItem = async (id: string) => {
 
 export const payment = async (amount: number) => {
   try {
-    const res = await axios.post('http://localhost:1200/api/payment', {
+    const res = await axios.post(`${API_URL}/api/payment`, {
       amount,
     })
     return res

@@ -1,9 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+import { API_URL } from '@/shared/utils/env.url'
+
 export const getManCategories = async () => {
   try {
-    const res = await axios.get('http://localhost:1200/api/user/categories/man')
+    const res = await axios.get(`${API_URL}/api/user/categories/man`)
     return res.data
   } catch (error) {
     console.error('Ошибка при получении категории', error)
@@ -12,7 +14,7 @@ export const getManCategories = async () => {
 
 export const getWomanCategories = async () => {
   try {
-    const res = await axios.get('http://localhost:1200/api/user/categories/woman')
+    const res = await axios.get(`${API_URL}/api/user/categories/woman`)
     return res.data
   } catch (error) {
     console.error('Ошибка при получении категории', error)
@@ -29,7 +31,7 @@ export const getCategoryByUrl = async ({
   limit: number
 }) => {
   try {
-    const res = await axios.get(`http://localhost:1200/api/user/category/${url}`, {
+    const res = await axios.get(`${API_URL}/api/user/category/${url}`, {
       params: {
         page,
         limit,
@@ -45,7 +47,7 @@ export const getProductByIdThunk = createAsyncThunk(
   'getProductById',
   async (id: string | undefined) => {
     try {
-      const res = await axios.get(`http://localhost:1200/api/user/product/${id}`)
+      const res = await axios.get(`${API_URL}/api/user/product/${id}`)
       return res.data
     } catch (error) {
       console.error('Ошибка в получении товара', error)
@@ -55,7 +57,7 @@ export const getProductByIdThunk = createAsyncThunk(
 
 export const search = async (title: string) => {
   try {
-    const res = await axios.get(`http://localhost:1200/api/user/search?title=${title}`)
+    const res = await axios.get(`${API_URL}/api/user/search?title=${title}`)
     return res.data
   } catch (error) {
     console.error(error)
@@ -64,7 +66,7 @@ export const search = async (title: string) => {
 
 export const getLastManProductThunk = createAsyncThunk('getLastManProduct', async () => {
   try {
-    const res = await axios.get('http://localhost:1200/api/user/products/man')
+    const res = await axios.get(`${API_URL}/api/user/products/man`)
     return res.data
   } catch (error) {
     console.error(error)
@@ -73,7 +75,7 @@ export const getLastManProductThunk = createAsyncThunk('getLastManProduct', asyn
 
 export const getLastWomanProductThunk = createAsyncThunk('getLastWomanProduct', async () => {
   try {
-    const res = await axios.get('http://localhost:1200/api/user/products/woman')
+    const res = await axios.get(`${API_URL}/api/user/products/woman`)
     return res.data
   } catch (error) {
     console.error(error)
